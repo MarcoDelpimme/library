@@ -6,6 +6,7 @@ import AlertComponent from "./component/AlertComponent.jsx";
 import AllTheBooksComponent from "./component/AllTheBooksComponent.jsx";
 import BookList from "./component/BookList";
 import items from "./data/fantasy.json";
+import CommentArea from "./component/CommentArea";
 
 function App() {
   return (
@@ -20,9 +21,7 @@ function App() {
       <div>
         <BookList books={items} />
       </div>
-      <div>
-        <AllTheBooksComponent />
-      </div>
+
       <div>
         <Myfooter />
       </div>

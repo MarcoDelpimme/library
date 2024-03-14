@@ -4,6 +4,7 @@ import { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { Col } from "react-bootstrap";
+import CommentArea from "./CommentArea";
 
 class SingleBook extends Component {
   state = {
@@ -26,6 +27,7 @@ class SingleBook extends Component {
             <Card.Title>{book.title}</Card.Title>
           </Card.Body>
         </Card>
+        {this.state.selected && <CommentArea id="commentArea" asin={book.asin} />}
       </Col>
     );
   }
