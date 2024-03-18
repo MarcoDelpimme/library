@@ -14,6 +14,8 @@ class CommentArea extends Component {
   }
 
   fetchComments = (asin) => {
+    if (!asin) return;
+
     fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
       headers: {
         Authorization:
@@ -44,9 +46,15 @@ class CommentArea extends Component {
   render() {
     return (
       <div className="bg-secondary  border rounded p-4">
-        <h2 className="text-white">Commenti</h2>
-        <CommentList comments={this.state.comments} />
-        <AddComment asin={this.props.selectedAsin} />
+        {this.props.selectedAsin ? (
+          <div>
+            <h2 className="text-white">Commenti</h2>
+            <CommentList comments={this.state.comments} />
+            <AddComment asin={this.props.selectedAsin} />{" "}
+          </div>
+        ) : (
+          <h1>Seleziona un libro per mostrarne i Commenti </h1>
+        )}
       </div>
     );
   }

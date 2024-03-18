@@ -30,17 +30,18 @@ class App extends Component {
         <div>
           <MyNav />
         </div>
-        <Container fluid>
+        <Container fluid id="containerLeftSide">
           <Row>
             {/* left side */}
             <Col xs={6}>
-              <h1 className="text-white">BookList</h1>
               <BookList books={items} onBookSelected={this.changeAppState} />
             </Col>
             {/* side right */}
             <Col xs={6}>
-              <h1 className="text-white">Commenti</h1>
-              <CommentArea selectedAsin={this.state.selected} />
+              <div className="position-sticky top-0">
+                <h1 className="text-white">Commenti</h1>
+                <CommentArea selectedAsin={this.state.selected} />
+              </div>
             </Col>
           </Row>
         </Container>

@@ -22,11 +22,11 @@ class BookList extends Component {
 
     return (
       <Container fluid>
-        <Row>
+        <Row id="leftSideRow">
           <Col>
             <Form>
+              <h1 className="text-white">BookList</h1>
               <Form.Group className="mb-3" controlId="formSearchBar">
-                <Form.Label>Cerca il tuo libro</Form.Label>
                 <Form.Control
                   type="search"
                   placeholder="cerca il tuo libro"

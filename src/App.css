@@ -71,5 +71,15 @@ body {
   background-color: white;
 }
 
-#imgCard {
+#containerLeftSide {
+  overflow-y: scroll;
+  max-height: 68vh;
+  overflow-x: hidden;
+}
+
+#leftSideRow {
+  position: sticky;
+  top: 0;
+  background-color: grey;
+  z-index: 3333;
 }
