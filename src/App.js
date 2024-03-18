@@ -7,26 +7,50 @@ import AllTheBooksComponent from "./component/AllTheBooksComponent.jsx";
 import BookList from "./component/BookList";
 import items from "./data/fantasy.json";
 import CommentArea from "./component/CommentArea";
+import { Col, Container, Row } from "react-bootstrap";
+import { Component } from "react";
 
-function App() {
-  return (
-    <div>
-      <div>
-        <AlertComponent />
-      </div>
-      <div>
-        <MyNav />
-      </div>
-      <h1 className="text-white">BookList</h1>
-      <div>
-        <BookList books={items} />
-      </div>
+class App extends Component {
+  state = {
+    selected: undefined, //faulsy
+  };
 
+  changeAppState = (asin) => {
+    this.setState({
+      selected: asin,
+    });
+  };
+
+  render() {
+    return (
       <div>
-        <Myfooter />
+        <div>
+          <AlertComponent />
+        </div>
+        <div>
+          <MyNav />
+        </div>
+        <Container fluid>
+          <Row>
+            {/* left side */}
+            <Col xs={6}>
+              <h1 className="text-white">BookList</h1>
+              <BookList books={items} onBookSelected={this.changeAppState} />
+            </Col>
+            {/* side right */}
+            <Col xs={6}>
+              <h1 className="text-white">Commenti</h1>
+              <CommentArea selectedAsin={this.state.selected} />
+            </Col>
+          </Row>
+        </Container>
+
+        <div>
+          <Myfooter />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

@@ -33,15 +33,15 @@ class BookList extends Component {
                   value={searchBar}
                   onChange={this.functionOfSearch}
                 />
-                <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+                <Form.Text className="text-muted">.</Form.Text>
               </Form.Group>
             </Form>
           </Col>
         </Row>
 
-        <Row>
+        <Row className="gx-5">
           {bookFilterOnBar.map((book, index) => (
-            <SingleBook key={index} book={book}></SingleBook>
+            <SingleBook key={index} book={book} onBookSelected={this.props.onBookSelected}></SingleBook>
           ))}
         </Row>
       </Container>

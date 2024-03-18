@@ -10,24 +10,22 @@ class SingleBook extends Component {
   state = {
     selected: false,
   };
+  onCLickedBook = () => {
+    this.setState((prevState) => ({ selected: !prevState.selected }));
+    this.props.onBookSelected(this.props.book.asin);
+  };
 
   render() {
     const { book } = this.props;
     return (
-      <Col xs={6} md={4} lg={3} xl={2} className="my-4">
-        <Card
-          style={{ width: "18rem", borderColor: this.state.selected ? "red" : "none" }}
-          id="OneCard"
-          onClick={(e) => {
-            this.setState({ selected: !this.state.selected });
-          }}
-        >
-          <Card.Img variant="top" src={book.img} alt={book.title} />
+      <Col xs={6} md={6} lg={6} xl={4} className="my-3">
+        <Card style={{ borderColor: this.state.selected ? "red" : "none" }} id="OneCard" onClick={this.onCLickedBook}>
+          <Card.Img variant="top" src={book.img} alt={book.title} id="imgCard" />
           <Card.Body>
             <Card.Title>{book.title}</Card.Title>
           </Card.Body>
         </Card>
-        {this.state.selected && <CommentArea id="commentArea" asin={book.asin} />}
+        {/* {this.state.selected && <CommentArea id="commentArea" asin={book.asin} />} */}
       </Col>
     );
   }

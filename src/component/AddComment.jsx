@@ -13,7 +13,7 @@ class AddComment extends Component {
   };
 
   rateChange = (event) => {
-    this.setState({ rate: parseInt(event.target.value) });
+    this.setState({ rate: event.target.value });
   };
 
   addComment = (event) => {

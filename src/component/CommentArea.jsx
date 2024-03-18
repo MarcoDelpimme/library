@@ -7,8 +7,14 @@ class CommentArea extends Component {
     comments: [],
   };
 
-  fetchComments = () => {
-    fetch("https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin, {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.selectedAsin !== prevProps.selectedAsin) {
+      this.fetchComments(this.props.selectedAsin);
+    }
+  }
+
+  fetchComments = (asin) => {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYyZWYzMzcxYWZhZjAwMTkxNTY2YjAiLCJpYXQiOjE3MTA0MTk3NjMsImV4cCI6MTcxMTYyOTM2M30.W1bFSrQ1fLTPrzQ3oNeD6CePpjNXFbQl-ZZNSas7NcI",
@@ -37,10 +43,10 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <div>
+      <div className="bg-secondary  border rounded p-4">
         <h2 className="text-white">Commenti</h2>
         <CommentList comments={this.state.comments} />
-        <AddComment asin={this.props.asin} />
+        <AddComment asin={this.props.selectedAsin} />
       </div>
     );
   }
