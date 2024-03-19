@@ -1,21 +1,17 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 
-class CommentArea extends Component {
-  state = {
-    comments: [],
-  };
+function CommentArea(props) {
+  const [comments, setComments] = useState([]);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.selectedAsin !== prevProps.selectedAsin) {
-      this.fetchComments(this.props.selectedAsin);
+  useEffect(() => {
+    if (props.selectedAsin) {
+      fetchComments(props.selectedAsin);
     }
-  }
+  }, [props.selectedAsin]);
 
-  fetchComments = (asin) => {
-    if (!asin) return;
-
+  const fetchComments = (asin) => {
     fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
       headers: {
         Authorization:
@@ -24,40 +20,32 @@ class CommentArea extends Component {
     })
       .then((response) => {
         if (response.ok) {
-          console.log(response);
           return response.json();
         } else {
-          throw new Error("errore for api call");
+          throw new Error("Errore nella chiamata all'API");
         }
       })
       .then((data) => {
-        console.log(data);
-        this.setState({ comments: data });
+        setComments(data);
       })
-      .catch((Error) => {
-        console.log(Error);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
-  componentDidMount() {
-    this.fetchComments();
-  }
-
-  render() {
-    return (
-      <div className="bg-secondary  border rounded p-4">
-        {this.props.selectedAsin ? (
-          <div>
-            <h2 className="text-white">Commenti</h2>
-            <CommentList comments={this.state.comments} />
-            <AddComment asin={this.props.selectedAsin} />{" "}
-          </div>
-        ) : (
-          <h1>Seleziona un libro per mostrarne i Commenti </h1>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="bg-secondary border rounded p-4">
+      {props.selectedAsin ? (
+        <div>
+          <h2 className="text-white">Commenti</h2>
+          <CommentList comments={comments} />
+          <AddComment asin={props.selectedAsin} />
+        </div>
+      ) : (
+        <h1>Seleziona un libro per mostrare i commenti</h1>
+      )}
+    </div>
+  );
 }
 
 export default CommentArea;
