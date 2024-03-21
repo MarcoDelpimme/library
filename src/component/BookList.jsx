@@ -28,6 +28,7 @@ function BookList(props) {
                 placeholder="cerca il tuo libro"
                 value={searchBar}
                 onChange={functionOfSearch}
+                data-testid="search-bar"
               />
               <Form.Text className="text-muted">.</Form.Text>
             </Form.Group>

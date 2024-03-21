@@ -25,7 +25,7 @@ function App() {
       <div>
         <MyNav />
       </div>
-      <Container fluid id="containerLeftSide">
+      <Container fluid id="containerLeftSide" data-testid="container">
         <Row>
           {/* left side */}
           <Col xs={6}>

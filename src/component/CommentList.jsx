@@ -2,7 +2,7 @@ import React from "react";
 
 const CommentList = ({ comments }) => {
   return (
-    <div>
+    <div data-testid="comment-list">
       <h3 className="text-white">Lista dei commenti</h3>
       <ul>
         {comments.map((comment, index) => (

@@ -13,10 +13,15 @@ function SingleBook({ book, onBookSelected }) {
 
   return (
     <Col xs={6} md={6} lg={6} xl={4} className="my-3">
-      <Card style={{ borderColor: selected ? "red" : "none" }} id="OneCard" onClick={onCLickedBook}>
+      <Card
+        style={{ borderColor: selected ? "red" : "none" }}
+        id="OneCard"
+        onClick={onCLickedBook}
+        data-testid="cardIdTest"
+      >
         <Card.Img variant="top" src={book.img} alt={book.title} id="imgCard" />
         <Card.Body>
-          <Card.Title>{book.title}</Card.Title>
+          <Card.Title data-testid="titleId">{book.title}</Card.Title>
         </Card.Body>
       </Card>
     </Col>

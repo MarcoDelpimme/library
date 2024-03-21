@@ -34,7 +34,7 @@ function CommentArea(props) {
   };
 
   return (
-    <div className="bg-secondary border rounded p-4">
+    <div className="bg-secondary border rounded p-4" data-testid="commentAreaId">
       {props.selectedAsin ? (
         <div>
           <h2 className="text-white">Commenti</h2>
